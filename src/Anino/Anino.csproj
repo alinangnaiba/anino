@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>anino</ToolCommandName>
+
+    <PackageId>Anino.Tool</PackageId>
+    <Description>Lightweight mock API server configurable via JSON.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>alinangnaiba</Authors>
+    <PackageTags>mock;api;testing;tool;cli;json;server;rest</PackageTags>
+    <RepositoryUrl>https://github.com/alinangnaiba/anino</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/alinangnaiba/anino</PackageProjectUrl>
+    <Copyright>Copyright (c) 2025 alinangnaiba</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta7.25380.108" />
+  </ItemGroup>
+
+</Project>
