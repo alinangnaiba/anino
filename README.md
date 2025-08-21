@@ -115,8 +115,7 @@ The `anino def new` command creates a file with a structure like this, which you
     "response": {
       "status": "healthy",
       "timestamp": "2025-08-21T12:00:00Z"
-    },
-    "delayMs": 150
+    }
   }
 ]
 ```
