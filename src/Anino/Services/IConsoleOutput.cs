@@ -1,5 +1,3 @@
-using Anino.Models;
-
 namespace Anino.Services;
 
 public interface IConsoleOutput

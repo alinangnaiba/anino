@@ -2,11 +2,11 @@ using System.Text.Json;
 
 namespace Anino.Services;
 
-public class TemplateGenerator : ITemplateGenerator
+public class DefinitionGenerator : IDefinitionGenerator
 {
-    public void GenerateTemplate(string fileName)
+    public void GenerateDefinition(string fileName)
     {
-        var template = CreateSampleTemplate();
+        var template = CreateSampleDefinition();
         var jsonOptions = new JsonSerializerOptions 
         { 
             WriteIndented = true,
@@ -17,7 +17,7 @@ public class TemplateGenerator : ITemplateGenerator
         File.WriteAllText(fileName, jsonContent);
     }
 
-    private static object[] CreateSampleTemplate()
+    private static object[] CreateSampleDefinition()
     {
         return
         [

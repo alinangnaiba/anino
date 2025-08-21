@@ -9,13 +9,13 @@ public class AninoApplication : IAninoApplication
     private readonly IConfigurationLoader _configurationLoader;
     private readonly IMockServerBuilder _serverBuilder;
     private readonly IConsoleOutput _consoleOutput;
-    private readonly ITemplateGenerator _templateGenerator;
+    private readonly IDefinitionGenerator _templateGenerator;
 
     public AninoApplication(
         IConfigurationLoader configurationLoader,
         IMockServerBuilder serverBuilder,
         IConsoleOutput consoleOutput,
-        ITemplateGenerator templateGenerator)
+        IDefinitionGenerator templateGenerator)
     {
         _configurationLoader = configurationLoader;
         _serverBuilder = serverBuilder;
@@ -28,22 +28,22 @@ public class AninoApplication : IAninoApplication
         try
         {
             // Handle template generation
-            if (!string.IsNullOrEmpty(options.GenerateTemplate))
+            if (!string.IsNullOrEmpty(options.GenerateDefinition))
             {
-                _templateGenerator.GenerateTemplate(options.GenerateTemplate);
+                _templateGenerator.GenerateDefinition(options.GenerateDefinition);
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"✓ Template generated successfully at '{options.GenerateTemplate}'");
+                Console.WriteLine($"✓ Template generated successfully at '{options.GenerateDefinition}'");
                 Console.ResetColor();
-                Console.WriteLine("\nTo use the template:");
-                Console.WriteLine($"  anino --file {options.GenerateTemplate}");
+                Console.WriteLine("\nTo use the definition:");
+                Console.WriteLine($"  anino server --def {options.GenerateDefinition}");
                 return 0;
             }
 
             if (options.File == null)
             {
-                _consoleOutput.WriteError("--file parameter is required.");
-                Console.WriteLine("Usage: anino --file <path-to-json> [--port <port>] [--latency <ms>]");
-                Console.WriteLine("   or: anino --generate-template <filename>");
+                _consoleOutput.WriteError("--def parameter is required.");
+                Console.WriteLine("Usage: anino server --def <path-to-json-def> [--port <port>] [--latency <ms>]");
+                Console.WriteLine("   or: anino def new --name <filename>");
                 return 1;
             }
 

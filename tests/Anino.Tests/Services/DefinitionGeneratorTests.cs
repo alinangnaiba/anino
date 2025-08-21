@@ -4,15 +4,15 @@ using FluentAssertions;
 
 namespace Anino.Tests.Services;
 
-public class TemplateGeneratorTests : IDisposable
+public class DefinitionGeneratorTests : IDisposable
 {
-    private readonly TemplateGenerator _templateGenerator;
+    private readonly DefinitionGenerator _definitionGenerator;
     private readonly string _testFilesDirectory;
 
-    public TemplateGeneratorTests()
+    public DefinitionGeneratorTests()
     {
-        _templateGenerator = new TemplateGenerator();
-        _testFilesDirectory = Path.Combine(Path.GetTempPath(), "AninoTemplateTests", Guid.NewGuid().ToString());
+        _definitionGenerator = new DefinitionGenerator();
+        _testFilesDirectory = Path.Combine(Path.GetTempPath(), "AninoDefinitionTests", Guid.NewGuid().ToString());
         Directory.CreateDirectory(_testFilesDirectory);
     }
 
@@ -25,18 +25,18 @@ public class TemplateGeneratorTests : IDisposable
     }
 
     [Fact]
-    public void GenerateTemplate_ShouldCreateValidJsonFile()
+    public void GenerateDefinition_ShouldCreateValidJsonFile()
     {
         // Arrange
-        var templateFile = Path.Combine(_testFilesDirectory, "test-template.json");
+        var definitionFile = Path.Combine(_testFilesDirectory, "test-definition.json");
 
         // Act
-        _templateGenerator.GenerateTemplate(templateFile);
+        _definitionGenerator.GenerateDefinition(definitionFile);
 
         // Assert
-        File.Exists(templateFile).Should().BeTrue();
+        File.Exists(definitionFile).Should().BeTrue();
         
-        var jsonContent = File.ReadAllText(templateFile);
+        var jsonContent = File.ReadAllText(definitionFile);
         jsonContent.Should().NotBeNullOrEmpty();
         
         // Verify it's valid JSON by deserializing
@@ -45,16 +45,16 @@ public class TemplateGeneratorTests : IDisposable
     }
 
     [Fact]
-    public void GenerateTemplate_ShouldContainCrudOperations()
+    public void GenerateDefinition_ShouldContainCrudOperations()
     {
         // Arrange
-        var templateFile = Path.Combine(_testFilesDirectory, "crud-template.json");
+        var definitionFile = Path.Combine(_testFilesDirectory, "crud-definition.json");
 
         // Act
-        _templateGenerator.GenerateTemplate(templateFile);
+        _definitionGenerator.GenerateDefinition(definitionFile);
 
         // Assert
-        var jsonContent = File.ReadAllText(templateFile);
+        var jsonContent = File.ReadAllText(definitionFile);
         var endpoints = JsonSerializer.Deserialize<JsonElement[]>(jsonContent);
 
         endpoints.Should().NotBeNull();
@@ -72,16 +72,16 @@ public class TemplateGeneratorTests : IDisposable
     }
 
     [Fact]
-    public void GenerateTemplate_ShouldContainUsersEndpoints()
+    public void GenerateDefinition_ShouldContainUsersEndpoints()
     {
         // Arrange
-        var templateFile = Path.Combine(_testFilesDirectory, "users-template.json");
+        var definitionFile = Path.Combine(_testFilesDirectory, "users-definition.json");
 
         // Act
-        _templateGenerator.GenerateTemplate(templateFile);
+        _definitionGenerator.GenerateDefinition(definitionFile);
 
         // Assert
-        var jsonContent = File.ReadAllText(templateFile);
+        var jsonContent = File.ReadAllText(definitionFile);
         var endpoints = JsonSerializer.Deserialize<JsonElement[]>(jsonContent);
 
         // Check that we have user-related endpoints
@@ -94,16 +94,16 @@ public class TemplateGeneratorTests : IDisposable
     }
 
     [Fact]
-    public void GenerateTemplate_ShouldHaveProperStatusCodes()
+    public void GenerateDefinition_ShouldHaveProperStatusCodes()
     {
         // Arrange
-        var templateFile = Path.Combine(_testFilesDirectory, "status-template.json");
+        var definitionFile = Path.Combine(_testFilesDirectory, "status-definition.json");
 
         // Act
-        _templateGenerator.GenerateTemplate(templateFile);
+        _definitionGenerator.GenerateDefinition(definitionFile);
 
         // Assert
-        var jsonContent = File.ReadAllText(templateFile);
+        var jsonContent = File.ReadAllText(definitionFile);
         var endpoints = JsonSerializer.Deserialize<JsonElement[]>(jsonContent);
 
         // Check status codes
@@ -117,16 +117,16 @@ public class TemplateGeneratorTests : IDisposable
     }
 
     [Fact]
-    public void GenerateTemplate_ShouldBeFormattedWithIndentation()
+    public void GenerateDefinition_ShouldBeFormattedWithIndentation()
     {
         // Arrange
-        var templateFile = Path.Combine(_testFilesDirectory, "formatted-template.json");
+        var definitionFile = Path.Combine(_testFilesDirectory, "formatted-definition.json");
 
         // Act
-        _templateGenerator.GenerateTemplate(templateFile);
+        _definitionGenerator.GenerateDefinition(definitionFile);
 
         // Assert
-        var jsonContent = File.ReadAllText(templateFile);
+        var jsonContent = File.ReadAllText(definitionFile);
         
         // Check that the JSON is properly formatted (indented)
         jsonContent.Should().Contain("  "); // Should contain indentation
@@ -134,20 +134,20 @@ public class TemplateGeneratorTests : IDisposable
     }
 
     [Theory]
-    [InlineData("template.json")]
+    [InlineData("definition.json")]
     [InlineData("api-config.json")]
     [InlineData("mock-data.json")]
-    public void GenerateTemplate_WithDifferentFileNames_ShouldWork(string fileName)
+    public void GenerateDefinition_WithDifferentFileNames_ShouldWork(string fileName)
     {
         // Arrange
-        var templateFile = Path.Combine(_testFilesDirectory, fileName);
+        var definitionFile = Path.Combine(_testFilesDirectory, fileName);
 
         // Act
-        _templateGenerator.GenerateTemplate(templateFile);
+        _definitionGenerator.GenerateDefinition(definitionFile);
 
         // Assert
-        File.Exists(templateFile).Should().BeTrue();
-        var jsonContent = File.ReadAllText(templateFile);
+        File.Exists(definitionFile).Should().BeTrue();
+        var jsonContent = File.ReadAllText(definitionFile);
         jsonContent.Should().NotBeNullOrEmpty();
     }
 }

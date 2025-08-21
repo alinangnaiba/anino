@@ -12,7 +12,7 @@ public class AninoApplicationTests
     private readonly IConfigurationLoader _mockConfigurationLoader;
     private readonly IMockServerBuilder _mockServerBuilder;
     private readonly IConsoleOutput _mockConsoleOutput;
-    private readonly ITemplateGenerator _mockTemplateGenerator;
+    private readonly IDefinitionGenerator _mockTemplateGenerator;
     private readonly IAninoWebApplication _mockWebApp;
     private readonly AninoApplication _application;
 
@@ -21,7 +21,7 @@ public class AninoApplicationTests
         _mockConfigurationLoader = Substitute.For<IConfigurationLoader>();
         _mockServerBuilder = Substitute.For<IMockServerBuilder>();
         _mockConsoleOutput = Substitute.For<IConsoleOutput>();
-        _mockTemplateGenerator = Substitute.For<ITemplateGenerator>();
+        _mockTemplateGenerator = Substitute.For<IDefinitionGenerator>();
         _mockWebApp = Substitute.For<IAninoWebApplication>();
 
         _application = new AninoApplication(
@@ -42,7 +42,7 @@ public class AninoApplicationTests
 
         // Assert
         result.Should().Be(1);
-        _mockConsoleOutput.Received(1).WriteError("--file parameter is required.");
+        _mockConsoleOutput.Received(1).WriteError("--def parameter is required.");
     }
 
     [Fact]
@@ -160,7 +160,7 @@ public class AninoApplicationTests
         var templateFileName = "sample-template.json";
         var options = new AninoOptions 
         { 
-            GenerateTemplate = templateFileName 
+            GenerateDefinition = templateFileName 
         };
 
         // Act
@@ -168,7 +168,7 @@ public class AninoApplicationTests
 
         // Assert
         result.Should().Be(0);
-        _mockTemplateGenerator.Received(1).GenerateTemplate(templateFileName);
+        _mockTemplateGenerator.Received(1).GenerateDefinition(templateFileName);
     }
 
     [Fact]
@@ -177,7 +177,7 @@ public class AninoApplicationTests
         // Arrange
         var options = new AninoOptions 
         { 
-            GenerateTemplate = "template.json" // This would come from processing the default
+            GenerateDefinition = "template.json" // This would come from processing the default
         };
 
         // Act
@@ -185,7 +185,7 @@ public class AninoApplicationTests
 
         // Assert
         result.Should().Be(0);
-        _mockTemplateGenerator.Received(1).GenerateTemplate("template.json");
+        _mockTemplateGenerator.Received(1).GenerateDefinition("template.json");
     }
 
     [Theory]
@@ -197,7 +197,7 @@ public class AninoApplicationTests
         // Arrange
         var options = new AninoOptions 
         { 
-            GenerateTemplate = templateFileName 
+            GenerateDefinition = templateFileName 
         };
 
         // Act
@@ -205,6 +205,6 @@ public class AninoApplicationTests
 
         // Assert
         result.Should().Be(0);
-        _mockTemplateGenerator.Received(1).GenerateTemplate(templateFileName);
+        _mockTemplateGenerator.Received(1).GenerateDefinition(templateFileName);
     }
 }
