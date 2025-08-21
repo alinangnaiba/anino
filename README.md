@@ -37,7 +37,7 @@ dotnet tool install -g Anino.Tool
 2.  **Start the mock server:**
     The `server` command starts the API server using the definition file.
     ```bash
-    anino server --def anino-def.json
+    anino server --def definition.json
     ```
 
 3.  **Test your new API:**
@@ -78,12 +78,12 @@ Creates a new sample API definition file. This is a subcommand of `def`.
 
 | Option             | Alias | Description                                      | Required | Default          |
 | ------------------ | ----- | ------------------------------------------------ | -------- | ---------------- |
-| `--name`           | `-n`  | The name of the definition file to be created.   | No       | `anino-def.json` |
+| `--name`           | `-n`  | The name of the definition file to be created.   | No       | `definition.json` |
 
 **Examples:**
 
 ```bash
-# Generate a default definition file named anino-def.json
+# Generate a default definition file named definition.json
 anino def new
 
 # Generate a definition file with a custom name
