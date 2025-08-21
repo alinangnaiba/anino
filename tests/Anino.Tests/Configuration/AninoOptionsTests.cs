@@ -13,7 +13,7 @@ public class AninoOptionsTests
 
         // Assert
         options.File.Should().BeNull();
-        options.Port.Should().Be(6000);
+        options.Port.Should().Be(7770);
         options.Latency.Should().Be(0);
     }
 

@@ -235,7 +235,7 @@ anino --file demo-data.json --port 5000
 ## Development
 
 ### Prerequisites
-- .NET 9.0 SDK or later
+- .NET 8.0 SDK or later
 
 ### Building from Source
 ```bash
