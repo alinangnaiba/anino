@@ -7,4 +7,6 @@ public interface IConsoleOutput
     void WriteEndpointMapped(string httpMethod, string path);
     void WriteServerRunning(int port);
     void WriteError(string message);
+    void WriteInformation(string message);
+    void WriteWarning(string message);
 }

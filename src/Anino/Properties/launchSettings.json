@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Anino": {
+      "commandName": "Project",
+      "commandLineArgs": "def scan C:/repositories/anino/samples/minimal-api//LibraryManagement/Program.cs -o ../../library-analytics.json"
+    }
+  }
+}

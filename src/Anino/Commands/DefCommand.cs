@@ -17,7 +17,10 @@ public class DefCommand : IAninoCommand
         var defCommand = new Command("def", "Definition file operations");
         
         var newCommand = new NewCommand(_application);
+        var scanCommand = new ScanCommand(_application);
+        
         defCommand.Add(newCommand.CreateCommand());
+        defCommand.Add(scanCommand.CreateCommand());
 
         return defCommand;
     }

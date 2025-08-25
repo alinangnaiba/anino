@@ -33,4 +33,18 @@ public class ConsoleOutput : IConsoleOutput
         Console.WriteLine($"Error: {message}");
         Console.ResetColor();
     }
+
+    public void WriteInformation(string message)
+    {
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine($"Info: {message}");
+        Console.ResetColor();
+    }
+
+    public void WriteWarning(string message)
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine($"Warning: {message}");
+        Console.ResetColor();
+    }
 }

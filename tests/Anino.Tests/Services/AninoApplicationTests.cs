@@ -13,6 +13,9 @@ public class AninoApplicationTests
     private readonly IMockServerBuilder _mockServerBuilder;
     private readonly IConsoleOutput _mockConsoleOutput;
     private readonly IDefinitionGenerator _mockTemplateGenerator;
+    private readonly IRoslynAnalyzer _mockRoslynAnalyzer;
+    private readonly IEndpointDiscoveryService _mockEndpointDiscoveryService;
+    private readonly IMockDataGenerator _mockMockDataGenerator;
     private readonly IAninoWebApplication _mockWebApp;
     private readonly AninoApplication _application;
 
@@ -22,13 +25,19 @@ public class AninoApplicationTests
         _mockServerBuilder = Substitute.For<IMockServerBuilder>();
         _mockConsoleOutput = Substitute.For<IConsoleOutput>();
         _mockTemplateGenerator = Substitute.For<IDefinitionGenerator>();
+        _mockRoslynAnalyzer = Substitute.For<IRoslynAnalyzer>();
+        _mockEndpointDiscoveryService = Substitute.For<IEndpointDiscoveryService>();
+        _mockMockDataGenerator = Substitute.For<IMockDataGenerator>();
         _mockWebApp = Substitute.For<IAninoWebApplication>();
 
         _application = new AninoApplication(
             _mockConfigurationLoader,
             _mockServerBuilder,
             _mockConsoleOutput,
-            _mockTemplateGenerator);
+            _mockTemplateGenerator,
+            _mockRoslynAnalyzer,
+            _mockEndpointDiscoveryService,
+            _mockMockDataGenerator);
     }
 
     [Fact]

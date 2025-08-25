@@ -15,7 +15,4 @@ public class ApiEndpoint
     public int StatusCode { get; set; } = 200;
     
     public JsonElement Response { get; set; }
-    
-    [Range(0, int.MaxValue)]
-    public int DelayMs { get; set; }
 }
